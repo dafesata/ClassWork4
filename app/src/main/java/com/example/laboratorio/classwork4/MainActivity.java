@@ -12,10 +12,15 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private String TAG = "ElTagListView";
+    private String[] materias;
+    private ArrayList<String> materia=new ArrayList<String>();
+    private int i=1;
+    private CustomAdapter customAdapter;
 
     private ListView list;
     @Override
@@ -25,12 +30,11 @@ public class MainActivity extends AppCompatActivity {
 
 
         list=(ListView) findViewById(R.id.ListView1);
-
-        String[] materias= new String[]{ "Materia 1","Materia 2","Materia 3","Materia 4",
-                "Materia 5","Materia 6","Materia 7","Materia 8","Materia 9","Materia 10"};
+        materia.add(0,"Materia 1");
+        materias= new String[]{ "Materia 1","","","","",""};
 
         //ArrayAdapter adaptador = new ArrayAdapter<String>(this,android.R.layout.simple_list_item_1,materias);
-        CustomAdapter customAdapter = new CustomAdapter(this,materias);
+        customAdapter =new CustomAdapter(this,materia);
 
          list.setAdapter(customAdapter);
 
@@ -44,6 +48,15 @@ public class MainActivity extends AppCompatActivity {
        });
 
 
+    }
+
+
+    public void OnClickAdd(View view){
+        materias[i]= "Materia "+(i+1);
+        materia.add(i,"Materia "+(i+1));
+        customAdapter = new CustomAdapter(this,materia);
+        list.setAdapter(customAdapter);
+        i++;
     }
     public void OnClickButtonRow(View view){
         Log.d(TAG,"Click en "+view.getTag());

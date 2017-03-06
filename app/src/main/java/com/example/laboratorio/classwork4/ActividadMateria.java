@@ -7,6 +7,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class ActividadMateria extends AppCompatActivity {
     private EditText nota1,nota2,nota3,nota4,def;
@@ -22,13 +23,21 @@ public class ActividadMateria extends AppCompatActivity {
     }
 
     public void OnClickCalcular(View v){
-        double n1 = Double.parseDouble(nota1.getText().toString());
-        double n2 = Double.parseDouble(nota2.getText().toString());
-        double n3 = Double.parseDouble(nota3.getText().toString());
-        double n4 = Double.parseDouble(nota4.getText().toString());
-        double Def = (n1 *0.25)+(n2*0.25)+(n3*0.25)+(n4*0.25);
+        if (!nota1.getText().toString().equals("") && !nota2.getText().toString().equals("") && !nota3.getText().toString().equals("") &&!nota4.getText().toString().equals("")) {
 
-        def.setText(String.valueOf(Def));
+            double n1 = Double.parseDouble(nota1.getText().toString());
+            double n2 = Double.parseDouble(nota2.getText().toString());
+            double n3 = Double.parseDouble(nota3.getText().toString());
+            double n4 = Double.parseDouble(nota4.getText().toString());
+            double Def = (n1 * 0.25) + (n2 * 0.25) + (n3 * 0.25) + (n4 * 0.25);
+
+            def.setText(String.valueOf(Def));
+        }else{
+            Toast toast1 =
+                    Toast.makeText(getApplicationContext(),
+                            "LLene todos los campos para continuar", Toast.LENGTH_SHORT);
+            toast1.show();
+        }
 
     }
 
